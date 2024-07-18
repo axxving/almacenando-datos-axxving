@@ -24,6 +24,15 @@ const createTask = (evento) => {
   //backticks
   const taskContent = document.createElement("div");
 
+  console.log({ value, dateFormat });
+  const taskObj = {
+    value,
+    dateFormat,
+  };
+
+  // La informacion persiste mientras la pestania este abierta
+  sessionStorage.setItem("tasks", JSON.stringify(taskObj));
+
   const titleTask = document.createElement("span");
   titleTask.classList.add("task");
   titleTask.innerText = value;
@@ -32,7 +41,6 @@ const createTask = (evento) => {
   // task.innerHTML = content;
   const dateElement = document.createElement("span");
   dateElement.innerHTML = dateFormat;
-  console.log(dateElement);
   task.appendChild(taskContent);
   task.appendChild(dateElement);
   task.appendChild(deleteIcon());
