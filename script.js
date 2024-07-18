@@ -9,6 +9,8 @@ const addTask = (evento) => {
   list.appendChild(task);
 };
 
+const taskList = [];
+
 const createTask = (evento) => {
   evento.preventDefault();
   const input = document.querySelector("[data-form-input]");
@@ -25,16 +27,20 @@ const createTask = (evento) => {
   const taskContent = document.createElement("div");
 
   console.log({ value, dateFormat });
+  
   const taskObj = {
     value,
     dateFormat,
   };
 
+  // Agregando las tareas en el local storage mediante una lista
+  taskList.push(taskObj);
+
   // La informacion persiste mientras la pestania este abierta
   // sessionStorage.setItem("tasks", JSON.stringify(taskObj));
 
   // La informacion persiste todo el tiempo en los datos del navegador
-  localStorage.setItem("tasks", JSON.stringify(taskObj));
+  localStorage.setItem("tasks", JSON.stringify(taskList));
 
   const titleTask = document.createElement("span");
   titleTask.classList.add("task");
