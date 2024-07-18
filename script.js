@@ -31,7 +31,10 @@ const createTask = (evento) => {
   };
 
   // La informacion persiste mientras la pestania este abierta
-  sessionStorage.setItem("tasks", JSON.stringify(taskObj));
+  // sessionStorage.setItem("tasks", JSON.stringify(taskObj));
+
+  // La informacion persiste todo el tiempo en los datos del navegador
+  localStorage.setItem("tasks", JSON.stringify(taskObj));
 
   const titleTask = document.createElement("span");
   titleTask.classList.add("task");
