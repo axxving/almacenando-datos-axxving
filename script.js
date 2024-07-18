@@ -3,6 +3,12 @@ import deleteIcon from "./components/deleteIcon.js";
 
 const btn = document.querySelector("[data-form-btn]");
 
+const addTask = (evento) => {
+  const list = document.querySelector("[data-list]");
+  const task = createTask(evento);
+  list.appendChild(task);
+};
+
 const createTask = (evento) => {
   evento.preventDefault();
   const input = document.querySelector("[data-form-input]");
@@ -24,11 +30,15 @@ const createTask = (evento) => {
   taskContent.appendChild(checkComplete());
   taskContent.appendChild(titleTask);
   // task.innerHTML = content;
-
+  const dateElement = document.createElement("span");
+  dateElement.innerHTML = dateFormat;
+  console.log(dateElement);
   task.appendChild(taskContent);
+  task.appendChild(dateElement);
   task.appendChild(deleteIcon());
   list.appendChild(task);
+  return task;
 };
 
 //Arrow functions o funciones anonimas
-btn.addEventListener("click", createTask);
+btn.addEventListener("click", addTask);
