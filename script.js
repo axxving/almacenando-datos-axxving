@@ -1,61 +1,6 @@
-import checkComplete from "./components/checkComplete.js";
-import deleteIcon from "./components/deleteIcon.js";
+import { addTask } from "./components/addTask.js";
 
 const btn = document.querySelector("[data-form-btn]");
-
-const addTask = (evento) => {
-  const list = document.querySelector("[data-list]");
-  const task = createTask(evento);
-  list.appendChild(task);
-};
-
-const taskList = [];
-
-const createTask = (evento) => {
-  evento.preventDefault();
-  const input = document.querySelector("[data-form-input]");
-  const calendar = document.querySelector("[data-form-date]");
-  const date = calendar.value;
-  const dateFormat = moment(date).format("DD/MM/YYYY");
-  console.log(dateFormat);
-  const value = input.value;
-  const list = document.querySelector("[data-list]");
-  const task = document.createElement("li");
-  task.classList.add("card");
-  input.value = "";
-  //backticks
-  const taskContent = document.createElement("div");
-
-  console.log({ value, dateFormat });
-  
-  const taskObj = {
-    value,
-    dateFormat,
-  };
-
-  // Agregando las tareas en el local storage mediante una lista
-  taskList.push(taskObj);
-
-  // La informacion persiste mientras la pestania este abierta
-  // sessionStorage.setItem("tasks", JSON.stringify(taskObj));
-
-  // La informacion persiste todo el tiempo en los datos del navegador
-  localStorage.setItem("tasks", JSON.stringify(taskList));
-
-  const titleTask = document.createElement("span");
-  titleTask.classList.add("task");
-  titleTask.innerText = value;
-  taskContent.appendChild(checkComplete());
-  taskContent.appendChild(titleTask);
-  // task.innerHTML = content;
-  const dateElement = document.createElement("span");
-  dateElement.innerHTML = dateFormat;
-  task.appendChild(taskContent);
-  task.appendChild(dateElement);
-  task.appendChild(deleteIcon());
-  list.appendChild(task);
-  return task;
-};
 
 //Arrow functions o funciones anonimas
 btn.addEventListener("click", addTask);
