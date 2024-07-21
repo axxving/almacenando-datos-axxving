@@ -5,7 +5,6 @@ import { orderDates } from "../services/date.js";
 
 export const displayTasks = () => {
   const list = document.querySelector("[data-list]");
-
   const taskList = JSON.parse(localStorage.getItem("tasks")) || [];
   const dates = uniqueDates(taskList);
   const order = orderDates(dates);
